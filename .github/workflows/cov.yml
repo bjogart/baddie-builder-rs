@@ -1,0 +1,21 @@
+name: codecov
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  codecov:
+    name: tarpaulin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hecrj/setup-rust-action@v1
+      - uses: actions-rs/tarpaulin@v0.1
+        with:
+          args: --all-features --fail-under 75

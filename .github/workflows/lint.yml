@@ -1,0 +1,43 @@
+name: lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    name: cargo-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hecrj/setup-rust-action@v1
+      - run: cargo check --workspace --verbose --no-default-features
+      - run: cargo check --workspace --verbose --all-features
+  clippy:
+    name: clippy
+    runs-on: ubuntu-latest
+    env:
+      CARGO_BUILD_RUSTFLAGS: -D warnings
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          components: clippy
+      - run: cargo clippy --workspace --verbose --no-default-features
+      - run: cargo clippy --workspace --verbose --all-features
+  udeps:
+    name: udeps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: nightly
+      - run: cargo install cargo-udeps
+      - run: cargo udeps --workspace --verbose --no-default-features
+      - run: cargo udeps --workspace --verbose --all-features

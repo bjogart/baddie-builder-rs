@@ -1,0 +1,31 @@
+name: fmt
+
+on: push
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  fmt:
+    name: rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with
+          ref: ${{ github.head_ref }}
+      - name: setup rustfmt
+        uses: hecrj/setup-rust-action@v1
+        with:
+          components: rustfmt
+      - name: run rustfmt
+        run: cargo fmt --all
+      - name: check for modified files
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+      - name: push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config user.name 'Jasper van den Bogart'
+          git config user.email 'bjogart@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "formatting changes"
+          git push
