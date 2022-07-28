@@ -3,4 +3,8 @@ name = "ast"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
+[build-dependencies]
+heck = "0.4.0"
+proc-macro2 = "1.0.42"
+quote = "1.0.20"
+ungrammar = "1.16.1"
