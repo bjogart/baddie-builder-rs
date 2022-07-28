@@ -217,7 +217,8 @@ fn token_to_syntaxkind(tok: &str) -> String {
     match tok {
         "todo" => "DUMMY",
         _ => panic!("unexpected token: {tok:?}:"),
-    }.to_owned()
+    }
+    .to_owned()
 }
 
 fn pluralize(s: &mut String) {
