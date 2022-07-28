@@ -1,0 +1,3 @@
+struct BbLang;
+
+enum SyntaxKind {}

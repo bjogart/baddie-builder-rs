@@ -44,7 +44,7 @@ fn main() {
         use rowan::Language;
         use rowan::NodeOrToken;
         use syntax::SyntaxKind;
-        use syntax::MomoLang;
+        use syntax::BbLang;
 
         use crate::SyntaxNode;
         use crate::SyntaxToken;
@@ -68,7 +68,7 @@ fn impl_node(node: NodeKind) -> TokenStream {
                 #[derive(Debug, Clone)]
                 pub struct #node_name(SyntaxNode);
                 impl AstNode for #node_name {
-                    type Language = MomoLang;
+                    type Language = BbLang;
                     fn can_cast(kind: <Self::Language as Language>::Kind) -> bool { matches!(kind, SyntaxKind::#node_name) }
                     fn cast(syntax: SyntaxNode) -> Option<Self> { if Self::can_cast(syntax.kind()) { Some(Self(syntax)) } else { None } }
                     fn syntax(&self) -> &SyntaxNode { &self.0 }
@@ -123,7 +123,7 @@ fn impl_node(node: NodeKind) -> TokenStream {
                 #[derive(Debug, Clone)]
                 pub enum #node_name { #(#variants(#variants)),* }
                 impl AstNode for #node_name {
-                    type Language = MomoLang;
+                    type Language = BbLang;
                     fn can_cast(kind: <Self::Language as Language>::Kind) -> bool { matches!(kind, #(SyntaxKind::#variants)|*) }
                     fn cast(syntax: SyntaxNode) -> Option<Self> { match syntax.kind() { #(SyntaxKind::#variants => Some(Self::#variants(#variants::cast(syntax).unwrap())),)* _ => None } }
                     fn syntax(&self) -> &SyntaxNode { match self { #(Self::#variants(node) => node.syntax()),* } }
