@@ -1,0 +1,8 @@
+[package]
+name = "ast_to_repr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ast = { version = "0.1.0", path = "../ast" }
+repr = { version = "0.1.0", path = "../repr" }

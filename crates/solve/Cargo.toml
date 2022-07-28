@@ -4,3 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+constants = { version = "0.1.0", path = "../constants" }
+flow = { version = "0.1.0", path = "../flow" }
+repr = { version = "0.1.0", path = "../repr" }

@@ -1,5 +1,5 @@
 use syntax::Token;
 
-pub fn tokenize(text: &str) -> impl Iterator<Item = Token> {
-    [todo!()].into_iter()
+pub fn tokenize(_s: &str) -> impl Iterator<Item = Token> {
+    [].into_iter() // TODO
 }
