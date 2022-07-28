@@ -1,7 +1,5 @@
 use std::collections::HashSet;
-use std::env;
 use std::fs;
-use std::path::PathBuf;
 use std::str::FromStr;
 
 use heck::ToSnakeCase;
@@ -56,9 +54,7 @@ fn main() {
             .map(|node| impl_node(layout_rule(&grm, &grm[node].rule, grm[node].name.to_owned()))),
     );
 
-    let mut out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
-    out_path.push("/ast_impl.rs");
-    fs::write(out_path, file.to_string()).unwrap();
+    fs::write("src/ast_impl.rs", file.to_string()).unwrap();
 }
 
 fn impl_node(node: NodeKind) -> TokenStream {
