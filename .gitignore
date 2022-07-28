@@ -1,2 +1,6 @@
 /target/
 **/*.rs.bk
+.vscode/
+Cargo.lock
+
+crates/ast/src/ast.impl

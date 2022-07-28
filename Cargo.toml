@@ -8,3 +8,5 @@ edition = "2021"
 members = ["crates/*"]
 
 [dependencies]
+block = { version = "0.1.0", path = "crates/block" }
+pack = { version = "0.1.0", path = "crates/pack" }

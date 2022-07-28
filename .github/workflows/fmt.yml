@@ -28,5 +28,5 @@ jobs:
           git config user.name 'Jasper van den Bogart'
           git config user.email 'bjogart@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "formatting changes"
+          git commit -am "autofmt"
           git push

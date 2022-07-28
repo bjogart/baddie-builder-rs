@@ -3,6 +3,7 @@ name = "solve"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+constants = { version = "0.1.0", path = "../constants" }
+flow = { version = "0.1.0", path = "../flow" }
+repr = { version = "0.1.0", path = "../repr" }

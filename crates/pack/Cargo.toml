@@ -1,6 +1,7 @@
 [package]
-name = "flow"
+name = "pack"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+repr = { version = "0.1.0", path = "../repr" }

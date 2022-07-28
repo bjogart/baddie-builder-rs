@@ -1,8 +1,8 @@
 [package]
-name = "print"
+name = "repr_to_block"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 block = { version = "0.1.0", path = "../block" }
-flow = { version = "0.1.0", path = "../flow" }
+repr = { version = "0.1.0", path = "../repr" }

@@ -1,8 +1,8 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
+use ast::Text;
+use syntax::Token;
+
+pub struct Error;
+
+pub fn parse(_tokens: impl Iterator<Item = Token>) -> (Text, Vec<Error>) {
+    todo!()
 }
