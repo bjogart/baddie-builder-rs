@@ -8,3 +8,7 @@ heck = "0.4.0"
 proc-macro2 = "1.0.42"
 quote = "1.0.20"
 ungrammar = "1.16.1"
+
+[dependencies]
+rowan = "0.15.8"
+syntax = { version = "0.1.0", path = "../syntax" }

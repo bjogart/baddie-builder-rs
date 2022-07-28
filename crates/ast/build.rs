@@ -56,7 +56,7 @@ fn main() {
     );
 
     let out_dir = env::var("OUT_DIR").unwrap();
-    fs::write(out_dir + "\\wrappers.rs", file.to_string()).unwrap();
+    fs::write(out_dir + "\\ast_impl.rs", file.to_string()).unwrap();
 }
 
 fn impl_node(node: NodeKind) -> TokenStream {
@@ -149,7 +149,7 @@ fn layout_rule(grm: &Grammar, rule: &Rule, name: String) -> NodeKind {
         Rule::Token(tok) => NodeKind::Node(
             name,
             vec![Field {
-                name: token_ident(&grm[*tok].name),
+                name: token_to_syntaxkind(&grm[*tok].name),
                 cardi: Cardinality::One,
                 kind: FieldKind::Token,
             }],
@@ -207,15 +207,15 @@ fn layout_rule(grm: &Grammar, rule: &Rule, name: String) -> NodeKind {
 fn name_atom(grm: &Grammar, rule: &Rule) -> Option<(String, FieldKind)> {
     match rule {
         Rule::Node(node) => Some((grm[*node].name.clone(), FieldKind::Node)),
-        Rule::Token(tok) => Some((token_ident(&grm[*tok].name), FieldKind::Token)),
+        Rule::Token(tok) => Some((token_to_syntaxkind(&grm[*tok].name), FieldKind::Token)),
         Rule::Opt(inner) => name_atom(grm, inner), // optionals of atoms are fine
         Rule::Labeled { .. } | Rule::Seq(_) | Rule::Alt(_) | Rule::Rep(_) => None,
     }
 }
 
-fn token_ident(tok: &str) -> String {
+fn token_to_syntaxkind(tok: &str) -> String {
     match tok {
-        "todo" => "TODO",
+        "todo" => "DUMMY",
         _ => panic!("unexpected token: {tok:?}:"),
     }.to_owned()
 }
