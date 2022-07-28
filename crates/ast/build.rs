@@ -54,7 +54,7 @@ fn main() {
             .map(|node| impl_node(layout_rule(&grm, &grm[node].rule, grm[node].name.to_owned()))),
     );
 
-    fs::write("src/ast_impl.rs", file.to_string()).unwrap();
+    fs::write("src/ast.impl", file.to_string()).unwrap();
 }
 
 fn impl_node(node: NodeKind) -> TokenStream {
