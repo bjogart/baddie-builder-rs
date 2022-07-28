@@ -22,8 +22,8 @@ jobs:
       - uses: hecrj/setup-rust-action@v1
         with:
           rust-version: ${{ matrix.toolchain }}
-      - run: cargo test --workspace --verbose --no-default-features
-      - run: cargo test --workspace --verbose --all-features
+      - run: cargo test --verbose --no-default-features
+      - run: cargo test --verbose --all-features
   miri-test:
     name: miri-test
     strategy:
@@ -36,5 +36,5 @@ jobs:
         with:
           rust-version: nightly
           components: miri
-      - run: cargo miri test --workspace --verbose --no-default-features
-      - run: cargo miri test --workspace --verbose --all-features
+      - run: cargo miri test --verbose --no-default-features
+      - run: cargo miri test --verbose --all-features
